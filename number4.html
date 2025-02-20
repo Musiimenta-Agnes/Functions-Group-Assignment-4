@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Format Converter</title>
+</head>
+<body>
+    <h1>12-hour to 24-hour Time Converter</h1>
+
+    <label for="timeInput">Enter time in 12-hour format (e.g., 02:30 PM):</label>
+    <input type="text" id="timeInput" placeholder="hh:mm AM/PM">
+    <button onclick="convertTo24Hour()">Convert</button>
+
+    <p id="result"></p>
+
+    <script>
+        function convertTo24Hour() {
+            const time12hr = document.getElementById('timeInput').value.trim();
+ 
+            const regex = /^(0[1-9]|1[0-2]):([0-5][0-9]) (AM|PM)$/i;
+
+            const match = time12hr.match(regex);
+
+            if (match) {
+                const hours = parseInt(match[1], 10);
+                const minutes = match[2];
+                const period = match[3].toUpperCase();
+
+                let hours24 = hours;
+
+                if (period === 'AM' && hours === 12) {
+                    hours24 = 0; 
+                } else if (period === 'PM' && hours !== 12) {
+                    hours24 = hours + 12; 
+                }
+
+                const formattedTime24 = `${hours24.toString().padStart(2, '0')}:${minutes}`;
+                document.getElementById('result').innerText = `Converted time: ${formattedTime24}`;
+            } else {
+                document.getElementById('result').innerText = "Invalid time format. Please enter in the correct 12-hour format (hh:mm AM/PM).";
+            }
+        }
+    </script>
+</body>
+</html>
