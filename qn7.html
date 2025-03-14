@@ -10,13 +10,13 @@
      <input type="text" id="userInput" placeholder="Enter a string">
      <button onclick="reverseString()">Reverse</button>
 
-     <p id ="user"></p>
+     <p id ="reversedResult"></p>
 
-     <script scr="">
+     <script >
        function reverseString() {
         const inputString = document.getElementById("userInput").value;
         const  reversed = inputString.split('').reverse().join("");
-        document.getElementById('reversedResult').innerText = 'Reversed String : ${reversed}';
+        document.getElementById('reversedResult').innerText = `Reversed String : ${reversed}`;
         }
      </script>
 </body>
